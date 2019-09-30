@@ -1,0 +1,33 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Asoblockchain Bolivia backend repository for manage requests to enter to a buy and sell whatsapp group",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Asoblockchain-Bolivia/backendBuySellApp.git"
+  },
+  "keywords": [
+    "Asoblockchain",
+    "Bolivia",
+    "Bitcoin",
+    "Blockchain"
+  ],
+  "author": "Huascar Miranda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Asoblockchain-Bolivia/backendBuySellApp/issues"
+  },
+  "homepage": "https://github.com/Asoblockchain-Bolivia/backendBuySellApp#readme",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  }
+}
