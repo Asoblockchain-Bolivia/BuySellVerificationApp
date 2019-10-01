@@ -1,9 +1,25 @@
+const passport = require("passport");
+require("../utils/strategies/facebook");
+require("dotenv").config();
+
 class Register {
   facebook() {
-    console.log("Facebook service right");
+    passport.authenticate("facebook", { scope: "email" });
+
+    /*passport.authenticate("facebook", user => {
+      console.log("Facebook service:", user);
+      return user;
+    });*/
   }
+
   callback() {
-    console.log("Callback service right");
+    passport.authenticate("facebook", {
+      successRedirect: "/",
+      failureRedirect: "/login"
+    }),
+      function(req, res) {
+        res.redirect("/dashboard");
+      };
   }
 }
 
