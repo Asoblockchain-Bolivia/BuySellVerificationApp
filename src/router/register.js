@@ -8,7 +8,7 @@ Router.get("/facebook", passport.authenticate("facebook", { scope: "email" }));
 
 Router.get("/callback", (req, res, next) => {
   Register.callback();
-  res.send("Calback right");
+  res.send("Llamada a callback en route");
 });
 
 module.exports = Router;
