@@ -14,6 +14,10 @@ passport.use(
       callbackURL: callback_url
     },
     function(accessToken, refreshToken, profile, done) {
+      console.log("accessToken:", accessToken);
+      console.log("refreshToken:", refreshToken);
+      console.log("profile:", profile);
+
       process.nextTick(function() {
         return done(null, profile);
       });
