@@ -7,8 +7,7 @@ require("../utils/strategies/facebook");
 Router.get("/facebook", passport.authenticate("facebook", { scope: "email" }));
 
 Router.get("/callback", (req, res, next) => {
-  Register.callback();
-  res.send("Llamada a callback en route");
+  res.send(req);
 });
 
 module.exports = Router;
