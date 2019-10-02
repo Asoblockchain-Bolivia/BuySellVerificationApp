@@ -11,7 +11,7 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_API_KEY,
       clientSecret: process.env.FACEBOOK_API_SECRET,
-      callbackURL: process.env.FACEBOOK_API_CALLBACK
+      callbackURL: callback_url
     },
     function(accessToken, refreshToken, profile, done) {
       process.nextTick(function() {
