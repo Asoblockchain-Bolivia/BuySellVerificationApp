@@ -3,7 +3,7 @@ require("dotenv").config();
 const RegisterRouter = require("./src/router/register");
 
 app.get("/", (req, res) => {
-  res.send("API FACEBOOK: ", process.env.FACEBOOK_API_KEY);
+  res.json({ "API FACEBOOK: ": process.env.FACEBOOK_API_KEY });
 });
 app.use("/auth", RegisterRouter);
 app.get("/login", (req, res) => {
