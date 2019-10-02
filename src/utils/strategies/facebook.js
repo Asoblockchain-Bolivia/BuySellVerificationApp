@@ -14,6 +14,8 @@ passport.use(
       callbackURL: callback_url
     },
     function(accessToken, refreshToken, profile, done) {
+      console.log("AQUI DEBERIA", profile);
+
       return done(
         { "accessToken:": accessToken, "refreshToken:": refreshToken },
         profile
