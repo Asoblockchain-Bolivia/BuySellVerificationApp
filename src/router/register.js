@@ -4,17 +4,15 @@ const Register = require("../services/register");
 const passport = require("passport");
 require("../utils/strategies/facebook");
 
+Router.get("/facebook", passport.authenticate("facebook", { scope: "email" }));
+
 Router.get(
-  "/facebook",
-  passport.authenticate("facebook", { scope: "email" }),
-  (req, res) => {
-    console.log("previo", req.body);
-    res.json({ previo: "Salida previa" });
+  "/callback",
+  passport.authenticate("facebook", { failureRedirect: "/falla" }),
+  (req, res, next) => {
+    console.log(req.body);
+    res.send("devolucion");
   }
 );
-
-Router.get("/callback", (req, res, next) => {
-  res.send("devolucion: ");
-});
 
 module.exports = Router;
