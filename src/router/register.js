@@ -4,13 +4,17 @@ const Register = require("../services/register");
 const passport = require("passport");
 require("../utils/strategies/facebook");
 
-Router.get("/facebook", passport.authenticate("facebook", { scope: "email" }));
+Router.get(
+  "/facebook",
+  passport.authenticate("facebook", {
+    scope: "user_about_me,email,public_profile"
+  })
+);
 
 Router.get(
   "/callback",
   passport.authenticate("facebook", { failureRedirect: "/falla" }),
   (req, res, next) => {
-    console.log(req.body);
     res.send("devolucion");
   }
 );
