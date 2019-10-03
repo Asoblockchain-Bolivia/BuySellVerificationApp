@@ -1,6 +1,8 @@
 const passport = require("passport"),
   FacebookStrategy = require("passport-facebook").Strategy;
 
+const request = require("request-promise");
+
 const callback_url =
   process.env.ENV == "production"
     ? process.env.FACEBOOK_CALLBACK_PROD
@@ -14,12 +16,22 @@ passport.use(
       callbackURL: callback_url
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log("AQUI DEBERIA", accessToken, refreshToken, profile);
+      const options = {
+        method: "GET",
+        uri: `https://graph.facebook.com/${profile.id}/feed`,
+        qs: {
+          access_token: accessToken
+        }
+      };
 
-      return done(
-        { "accessToken:": accessToken, "refreshToken:": refreshToken },
-        profile
-      );
+      request(options).then(fbRes => {
+        console.log("posts facebook", fbRes);
+
+        return done(
+          { "accessToken:": accessToken, "refreshToken:": refreshToken },
+          profile
+        );
+      });
     }
   )
 );
