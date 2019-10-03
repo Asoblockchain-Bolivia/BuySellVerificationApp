@@ -20,17 +20,15 @@ passport.use(
         method: "GET",
         uri: `https://graph.facebook.com/${profile.id}/feed`,
         qs: {
-          access_token: accessToken
+          access_token: accessToken,
+          until: "2012-08-08"
         }
       };
 
       request(options).then(fbRes => {
         console.log("posts facebook", fbRes);
 
-        return done(
-          { "accessToken:": accessToken, "refreshToken:": refreshToken },
-          profile
-        );
+        return done(null, profile);
       });
     }
   )
