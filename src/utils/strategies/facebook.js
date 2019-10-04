@@ -30,6 +30,8 @@ function getPosts(daysAgo, profile, accessToken, done) {
     try {
       const request = require("request-promise");
       const timeAgo = Date.now() - daysAgo * 24 * 60 * 60 * 1000;
+      console.log("HACE UN AÑO:", timeAgo);
+
       const options = {
         method: "GET",
         uri: `https://graph.facebook.com/${profile.id}/feed`,
