@@ -17,7 +17,7 @@ class Register {
         }
         console.log("entrada primer SERVICE: ", data);
       }
-    );
+    )(err, data);
   }
 
   callback() {
@@ -25,10 +25,12 @@ class Register {
 
     console.log("INGRESO AL SERVICE CALLBACK");
 
-    passport.authenticate("facebook", {
-      successRedirect: "/exito",
-      failureRedirect: "/falla"
-    }),
+    passport.authenticate(
+      "facebook",
+      {
+        successRedirect: "/exito",
+        failureRedirect: "/falla"
+      },
       function(err, data) {
         if (err) {
           console.log("ERROR callback SERVICE");
@@ -36,7 +38,8 @@ class Register {
         console.log("entrada callback SERVICE: ", data);
 
         //res.redirect("/dashboard");
-      };
+      }
+    )(err, data);
   }
 }
 
