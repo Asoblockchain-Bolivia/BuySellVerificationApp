@@ -2,10 +2,8 @@ const passport = require("passport");
 require("dotenv").config();
 
 class Register {
-  facebook() {
+  facebook(req, res, next) {
     require("../utils/strategies/facebook");
-    console.log("INGRESO AL SERVICE ENTRADA");
-
     passport.authenticate(
       "facebook",
       {
@@ -17,7 +15,7 @@ class Register {
         }
         console.log("entrada primer SERVICE: ", data);
       }
-    )();
+    )(req, res, next);
   }
 
   callback() {

@@ -5,7 +5,7 @@ const passport = require("passport");
 require("../utils/strategies/facebook");
 
 Router.get("/facebook", function(req, res, next) {
-  Register.facebook();
+  Register.facebook(req, res, next);
 });
 
 Router.get("/callback", function(req, res, next) {
