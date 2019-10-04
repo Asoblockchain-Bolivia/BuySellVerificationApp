@@ -17,7 +17,7 @@ class Register {
         }
         console.log("entrada primer SERVICE: ", data);
       }
-    )(err, data);
+    )();
   }
 
   callback() {
@@ -39,7 +39,7 @@ class Register {
 
         //res.redirect("/dashboard");
       }
-    )(err, data);
+    )();
   }
 }
 
