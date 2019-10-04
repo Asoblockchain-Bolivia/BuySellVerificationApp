@@ -18,7 +18,7 @@ class Register {
     )(req, res, next);
   }
 
-  callback() {
+  callback(req, res, next) {
     require("../utils/strategies/facebook");
 
     console.log("INGRESO AL SERVICE CALLBACK");
@@ -37,7 +37,7 @@ class Register {
 
         //res.redirect("/dashboard");
       }
-    )();
+    )(req, res, next);
   }
 }
 

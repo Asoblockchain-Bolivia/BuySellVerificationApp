@@ -12,8 +12,8 @@ passport.use(
   new FacebookStrategy(
     {
       clientID: process.env.FACEBOOK_API_KEY,
-      clientSecret: process.env.FACEBOOK_API_SECRET
-      //callbackURL: callback_url
+      clientSecret: process.env.FACEBOOK_API_SECRET,
+      callbackURL: callback_url
     },
     async function(accessToken, refreshToken, profile, done) {
       try {

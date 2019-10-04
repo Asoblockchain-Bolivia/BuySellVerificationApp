@@ -9,7 +9,7 @@ Router.get("/facebook", function(req, res, next) {
 });
 
 Router.get("/callback", function(req, res, next) {
-  Register.callback();
+  Register.callback(req, res, next);
 });
 
 module.exports = Router;
