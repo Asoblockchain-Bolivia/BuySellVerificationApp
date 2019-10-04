@@ -7,7 +7,7 @@ require("../utils/strategies/facebook");
 Router.get(
   "/facebook",
   passport.authenticate("facebook", {
-    scope: "email,public_profile, user_likes, user_posts"
+    scope: "email,public_profile, user_posts"
   })
 );
 

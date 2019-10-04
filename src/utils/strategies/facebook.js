@@ -1,3 +1,4 @@
+const request = require("request-promise");
 const passport = require("passport"),
   FacebookStrategy = require("passport-facebook").Strategy;
 require("dotenv").config();
@@ -28,11 +29,9 @@ passport.use(
 function getPosts(daysAgo, profile, accessToken, done) {
   return new Promise((res, rej) => {
     try {
-      const request = require("request-promise");
       const timeAgo = new Date(
         Date.now() - daysAgo * 24 * 60 * 60 * 1000
       ).toLocaleDateString("en-US");
-      console.log("HACE UN AÑO:", timeAgo);
 
       const options = {
         method: "GET",
@@ -44,8 +43,8 @@ function getPosts(daysAgo, profile, accessToken, done) {
       };
 
       request(options).then(fbRes => {
+        console.log("Datos obtenidos", profile);
         console.log("posts facebook", JSON.parse(fbRes).data.length);
-        console.log("posts facebook 2", JSON.parse(fbRes).data.size);
 
         res(done(null, profile));
       });
