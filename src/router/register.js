@@ -30,11 +30,11 @@ Router.get("/allow_permission", (req, res) => {
   });
 });
 
-Router.get("valid_account", (req, res) => {
+Router.get("/valid_account", (req, res) => {
   res.send("Mostrar formulario pidiendo algunos datos adicionales");
 });
 
-Router.get("invalid_account", (req, res) => {
+Router.get("/invalid_account", (req, res) => {
   res.send("El usuario no es antiguo");
 });
 

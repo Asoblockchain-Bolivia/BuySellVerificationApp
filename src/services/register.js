@@ -20,6 +20,7 @@ class Register {
         if (err) {
           res.redirect("/error");
         }
+        console.log("POST DEL USER: ", data.n_posts);
 
         if (data.n_posts > 0) {
           res.redirect("/auth/valid_account");
