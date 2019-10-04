@@ -35,7 +35,7 @@ class Register {
         }
         console.log("entrada callback SERVICE: ", data);
 
-        res.redirect("/dashboard");
+        res.redirect("/");
       }
     )(req, res, next);
   }
