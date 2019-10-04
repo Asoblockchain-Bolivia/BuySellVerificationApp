@@ -29,7 +29,9 @@ function getPosts(daysAgo, profile, accessToken, done) {
   return new Promise((res, rej) => {
     try {
       const request = require("request-promise");
-      const timeAgo = Date.now() - daysAgo * 24 * 60 * 60 * 1000;
+      const timeAgo = new Date(
+        Date.now() - daysAgo * 24 * 60 * 60 * 1000
+      ).toLocaleDateString("en-US");
       console.log("HACE UN AÑO:", timeAgo);
 
       const options = {
