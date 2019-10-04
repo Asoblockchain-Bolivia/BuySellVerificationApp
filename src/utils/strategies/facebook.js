@@ -44,7 +44,9 @@ function getPosts(daysAgo, profile, accessToken, done) {
       };
 
       request(options).then(fbRes => {
-        console.log("posts facebook", fbRes);
+        console.log("posts facebook", fbRes.data.length);
+        console.log("posts facebook 2", fbRes.data.size);
+
         res(done(null, profile));
       });
     } catch (error) {
