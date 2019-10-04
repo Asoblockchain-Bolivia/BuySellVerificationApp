@@ -1,6 +1,6 @@
 const passport = require("passport");
-require("../utils/strategies/facebook");
 require("dotenv").config();
+require("../utils/strategies/facebook");
 
 class Register {
   facebook() {

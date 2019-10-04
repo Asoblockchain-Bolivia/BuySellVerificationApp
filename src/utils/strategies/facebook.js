@@ -13,23 +13,37 @@ passport.use(
       clientSecret: process.env.FACEBOOK_API_SECRET,
       callbackURL: callback_url
     },
-    function(accessToken, refreshToken, profile, done) {
-      const request = require("request-promise");
+    async function(accessToken, refreshToken, profile, done) {
+      return await getPosts(
+        process.env.DAYS_ANTIQUITY,
+        profile,
+        accessToken,
+        done
+      );
+    }
+  )
+);
 
+function getPosts(daysAgo, profile, accessToken, done) {
+  return new Promise((res, rej) => {
+    try {
+      const request = require("request-promise");
+      const timeAgo = Date.now() - daysAgo * 24 * 60 * 60 * 1000;
       const options = {
         method: "GET",
         uri: `https://graph.facebook.com/${profile.id}/feed`,
         qs: {
           access_token: accessToken,
-          until: "2012-08-08"
+          until: timeAgo
         }
       };
 
       request(options).then(fbRes => {
         console.log("posts facebook", fbRes);
-
-        return done(null, profile);
+        res(done(null, profile));
       });
+    } catch (error) {
+      rej(erro);
     }
-  )
-);
+  });
+}
