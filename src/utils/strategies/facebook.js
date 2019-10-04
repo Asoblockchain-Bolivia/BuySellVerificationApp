@@ -1,5 +1,6 @@
 const passport = require("passport"),
   FacebookStrategy = require("passport-facebook").Strategy;
+require("dotenv").config();
 
 const callback_url =
   process.env.ENV == "production"
