@@ -3,7 +3,14 @@ require("dotenv").config();
 const RegisterRouter = require("./src/router/register");
 
 app.get("/", (req, res) => {
-  res.send(req);
+  console.log(req);
+
+  res.json({
+    url: "HOME",
+    content: req,
+    params: req.params,
+    query: req.query
+  });
 });
 app.use("/auth", RegisterRouter);
 app.get("/falla", (req, res) => {

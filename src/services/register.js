@@ -20,7 +20,7 @@ class Register {
         if (err) {
           console.log("ERROR callback SERVICE");
         }
-        console.log("entrada callback SERVICE: ", data);
+        //console.log("entrada callback SERVICE: ", data);
 
         res.redirect("/");
       }
