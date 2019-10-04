@@ -1,9 +1,11 @@
 const passport = require("passport");
 require("dotenv").config();
-require("../utils/strategies/facebook");
 
 class Register {
   facebook() {
+    require("../utils/strategies/facebook");
+    console.log("INGRESO AL SERVICE ENTRADA");
+
     passport.authenticate(
       "facebook",
       {
@@ -19,6 +21,10 @@ class Register {
   }
 
   callback() {
+    require("../utils/strategies/facebook");
+
+    console.log("INGRESO AL SERVICE CALLBACK");
+
     passport.authenticate("facebook", {
       successRedirect: "/exito",
       failureRedirect: "/falla"
