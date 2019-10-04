@@ -48,7 +48,7 @@ function getPosts(daysAgo, profile, accessToken, done) {
       };
 
       request(options).then(fbRes => {
-        res({ profile: profile, data: JSON.parse(fbRes).data.length });
+        res({ profile: profile, n_posts: JSON.parse(fbRes).data.length });
       });
     } catch (error) {
       rej(erro);

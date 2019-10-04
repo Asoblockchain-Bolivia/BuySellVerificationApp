@@ -13,16 +13,19 @@ class Register {
     passport.authenticate(
       "facebook",
       {
-        successRedirect: "/exito",
-        failureRedirect: "/falla"
+        successRedirect: "/auth/allow_permission",
+        failureRedirect: "/auth/reject_permission"
       },
       function(err, data) {
         if (err) {
-          console.log("ERROR callback SERVICE");
+          res.redirect("/error");
         }
-        //console.log("entrada callback SERVICE: ", data);
 
-        res.redirect("/");
+        if (data.n_posts > 0) {
+          res.redirect("/auth/valid_account");
+        } else {
+          res.redirect("/auth/invalid_account");
+        }
       }
     )(req, res, next);
   }
