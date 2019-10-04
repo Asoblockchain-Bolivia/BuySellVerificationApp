@@ -1,28 +1,15 @@
 const passport = require("passport");
 require("dotenv").config();
+require("../utils/strategies/facebook");
 
 class Register {
   facebook(req, res, next) {
-    require("../utils/strategies/facebook");
-    console.log("INGRESO AL SERVICE principal");
-
-    passport.authenticate(
-      "facebook",
-      {
-        scope: "email,public_profile, user_posts"
-      },
-      function(err, data) {
-        if (err) {
-          console.log("ERROR primer SERVICE");
-        }
-        console.log("entrada primer SERVICE: ", data);
-      }
-    )(req, res, next);
+    passport.authenticate("facebook", {
+      scope: ["public_profile", "email", "user_posts"]
+    })(req, res, next);
   }
 
   callback(req, res, next) {
-    require("../utils/strategies/facebook");
-
     passport.authenticate(
       "facebook",
       {

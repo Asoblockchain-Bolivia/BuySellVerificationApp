@@ -5,7 +5,7 @@ const RegisterRouter = require("./src/router/register");
 app.get("/", (req, res) => {
   res.json({
     url: "HOME",
-    "body: ": req.body,
+    "bodyS: ": req.body,
     "params: ": req.params,
     "query: ": req.query
   });
@@ -14,7 +14,7 @@ app.use("/auth", RegisterRouter);
 app.get("/falla", (req, res) => {
   res.json({
     url: "RECHAZO",
-    "body: ": req.body,
+    "bodyS: ": req.body,
     "params: ": req.params,
     "query: ": req.query
   });
@@ -22,7 +22,7 @@ app.get("/falla", (req, res) => {
 app.get("/exito", (req, res) => {
   res.json({
     url: "EXITO",
-    "body: ": req.body,
+    "bodyS: ": req.body,
     "params: ": req.params,
     "query: ": req.query
   });
