@@ -4,6 +4,8 @@ require("dotenv").config();
 class Register {
   facebook(req, res, next) {
     require("../utils/strategies/facebook");
+    console.log("INGRESO AL SERVICE principal");
+
     passport.authenticate(
       "facebook",
       {
@@ -21,8 +23,6 @@ class Register {
   callback(req, res, next) {
     require("../utils/strategies/facebook");
 
-    console.log("INGRESO AL SERVICE CALLBACK");
-
     passport.authenticate(
       "facebook",
       {
@@ -35,7 +35,7 @@ class Register {
         }
         console.log("entrada callback SERVICE: ", data);
 
-        //res.redirect("/dashboard");
+        res.redirect("/dashboard");
       }
     )(req, res, next);
   }
