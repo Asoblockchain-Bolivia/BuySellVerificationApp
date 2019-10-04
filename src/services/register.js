@@ -4,21 +4,32 @@ require("../utils/strategies/facebook");
 
 class Register {
   facebook() {
-    passport.authenticate("facebook", { scope: "email" });
-
-    /*passport.authenticate("facebook", user => {
-      console.log("Facebook service:", user);
-      return user;
-    });*/
+    passport.authenticate(
+      "facebook",
+      {
+        scope: "email,public_profile, user_posts"
+      },
+      function(err, data) {
+        if (err) {
+          console.log("ERROR primer SERVICE");
+        }
+        console.log("entrada primer SERVICE: ", data);
+      }
+    );
   }
 
   callback() {
     passport.authenticate("facebook", {
-      successRedirect: "/",
-      failureRedirect: "/login"
+      successRedirect: "/exito",
+      failureRedirect: "/falla"
     }),
-      function(req, res) {
-        res.redirect("/dashboard");
+      function(err, data) {
+        if (err) {
+          console.log("ERROR callback SERVICE");
+        }
+        console.log("entrada callback SERVICE: ", data);
+
+        //res.redirect("/dashboard");
       };
   }
 }

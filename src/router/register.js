@@ -4,19 +4,12 @@ const Register = require("../services/register");
 const passport = require("passport");
 require("../utils/strategies/facebook");
 
-Router.get(
-  "/facebook",
-  passport.authenticate("facebook", {
-    scope: "email,public_profile, user_posts"
-  })
-);
+Router.get("/facebook", function(req, res, next) {
+  Register.facebook();
+});
 
-Router.get(
-  "/callback",
-  passport.authenticate("facebook", { failureRedirect: "/falla" }),
-  (req, res, next) => {
-    res.send("devolucion");
-  }
-);
+Router.get("/callback", function(req, res, next) {
+  Register.callback();
+});
 
 module.exports = Router;

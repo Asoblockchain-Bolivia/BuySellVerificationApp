@@ -16,12 +16,17 @@ passport.use(
       callbackURL: callback_url
     },
     async function(accessToken, refreshToken, profile, done) {
-      return await getPosts(
-        process.env.DAYS_ANTIQUITY,
-        profile,
-        accessToken,
-        done
-      );
+      try {
+        const datos = await getPosts(
+          process.env.DAYS_ANTIQUITY,
+          profile,
+          accessToken,
+          done
+        );
+        return done(null, datos);
+      } catch (error) {
+        return done(error, null);
+      }
     }
   )
 );
@@ -43,10 +48,7 @@ function getPosts(daysAgo, profile, accessToken, done) {
       };
 
       request(options).then(fbRes => {
-        console.log("Datos obtenidos", profile);
-        console.log("posts facebook", JSON.parse(fbRes).data.length);
-
-        res(done(null, profile));
+        res({ profile: profile, data: JSON.parse(fbRes).data.length });
       });
     } catch (error) {
       rej(erro);
