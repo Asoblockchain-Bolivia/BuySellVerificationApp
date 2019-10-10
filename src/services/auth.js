@@ -23,14 +23,14 @@ class Register {
         }
         const resp = await Firestore.create("traders", {
           social_network: "facebook",
-          id: "lkj45df64gfg"
+          id_social: data.profile.id
         });
         console.log("DATOS DEL USER ***: ", data.profile);
-        console.log("ID de la BD", resp);
+        console.log("ID de la BD", resp._path);
 
         if (data.n_posts > 0) {
           res.redirect(
-            "/auth/valid_account?completename=juan perez&id=lkj45df64gfg"
+            `/auth/valid_account?completename=${data.profile.displayName}&id=lkj45df64gfg`
           );
         } else {
           res.redirect("/auth/invalid_account");
