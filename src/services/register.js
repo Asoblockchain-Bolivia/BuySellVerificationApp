@@ -1,26 +1,24 @@
-const passport = require("passport");
-require("../utils/strategies/facebook");
 require("dotenv").config();
-
+const Firestore = require("../utils/config/firestore");
 class Register {
-  facebook() {
-    passport.authenticate("facebook", { scope: "email" });
-
-    /*passport.authenticate("facebook", user => {
-      console.log("Facebook service:", user);
-      return user;
-    });*/
+  constructor() {
+    this.table = process.env.TABLA;
   }
 
-  callback() {
-    passport.authenticate("facebook", {
-      successRedirect: "/",
-      failureRedirect: "/login"
-    }),
-      function(req, res) {
-        res.redirect("/dashboard");
-      };
+  async post(req, res, next) {
+    try {
+      const id = req.body.id;
+      delete req.body.id;
+      const resp = await Firestore.update(this.table, id, req.body);
+      if (resp._writeTime) {
+        res.redirect(`https://chat.whatsapp.com/${process.env.IDGRUPO}`);
+      } else {
+        throw new Error("Error de Base de Datos");
+      }
+    } catch (error) {
+      res.redirect(`/auth/valid_account?msg=${error.msg}`);
+    }
+    next();
   }
 }
-
 module.exports = new Register();
