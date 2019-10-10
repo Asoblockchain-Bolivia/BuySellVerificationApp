@@ -7,7 +7,6 @@ class Firestore {
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount)
     });
-
     this.conn = admin.firestore();
   }
 
