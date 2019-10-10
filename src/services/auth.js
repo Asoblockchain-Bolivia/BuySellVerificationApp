@@ -21,7 +21,7 @@ class Register {
         if (err) {
           res.redirect("/error");
         }
-        const resp = await Firestore.create("traders", {
+        const resp = await Firestore.create(process.env.TABLA, {
           social_network: "facebook",
           id_social: data.profile.id
         });

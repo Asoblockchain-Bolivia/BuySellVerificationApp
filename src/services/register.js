@@ -2,7 +2,7 @@ require("dotenv").config();
 const Firestore = require("../utils/config/firestore");
 class Register {
   constructor() {
-    this.table = "traders";
+    this.table = process.env.TABLA;
   }
 
   async post(req, res, next) {

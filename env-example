@@ -1,0 +1,19 @@
+#general
+    ENV = 
+    PORT = 
+    DAYS_ANTIQUITY = 
+    IDGRUPO = 
+    TABLA = 
+
+#facebook
+    FACEBOOK_API_KEY = 
+    FACEBOOK_API_SECRET = 
+    FACEBOOK_CALLBACK_PROD =
+    FACEBOOK_CALLBACK_DEV =
+
+#firestores
+    FIRESTOREID = 
+    PRIVATEKEYID = 
+    PRIVATEKEY = 
+    CLIENTEMAIL = 
+    CLIENTID =
