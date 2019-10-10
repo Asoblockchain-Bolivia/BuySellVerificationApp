@@ -25,12 +25,13 @@ class Register {
           social_network: "facebook",
           id_social: data.profile.id
         });
-        console.log("DATOS DEL USER ***: ", data.profile);
-        console.log("ID de la BD", resp._path);
+        console.log("**ID de la BD**: ", resp._path.segments);
 
         if (data.n_posts > 0) {
           res.redirect(
-            `/auth/valid_account?completename=${data.profile.displayName}&id=lkj45df64gfg`
+            `/auth/valid_account?completename=${data.profile.displayName}&id=${
+              resp._path.segments[1]
+            }`
           );
         } else {
           res.redirect("/auth/invalid_account");
