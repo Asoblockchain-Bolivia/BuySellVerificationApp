@@ -4,7 +4,7 @@ module.exports = {
   type: "service_account",
   project_id: process.env.FIRESTOREID,
   private_key_id: process.env.PRIVATEKEYID,
-  private_key: process.env.PRIVATEKEY,
+  private_key: process.env.PRIVATEKEY.replace(/\\n/g, "\n"),
   client_email: process.env.CLIENTEMAIL,
   client_id: process.env.CLIENTID,
   auth_uri: "https://accounts.google.com/o/oauth2/auth",
