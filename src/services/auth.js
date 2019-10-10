@@ -25,7 +25,6 @@ class Register {
           social_network: "facebook",
           id_social: data.profile.id
         });
-        console.log("**ID de la BD**: ", resp._path.segments);
 
         if (data.n_posts > 0) {
           res.redirect(
