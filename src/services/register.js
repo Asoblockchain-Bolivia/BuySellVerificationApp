@@ -1,35 +1,24 @@
-const passport = require("passport");
 require("dotenv").config();
-require("../utils/strategies/facebook");
-
+const Firestore = require("../utils/config/firestore");
 class Register {
-  facebook(req, res, next) {
-    passport.authenticate("facebook", {
-      scope: ["public_profile", "email", "user_posts"]
-    })(req, res, next);
+  constructor() {
+    this.table = "traders";
   }
 
-  callback(req, res, next) {
-    passport.authenticate(
-      "facebook",
-      {
-        successRedirect: "/auth/allow_permission",
-        failureRedirect: "/auth/reject_permission"
-      },
-      function(err, data) {
-        if (err) {
-          res.redirect("/error");
-        }
-        console.log("POST DEL USER: ", data.n_posts);
-
-        if (data.n_posts > 0) {
-          res.redirect("/auth/valid_account");
-        } else {
-          res.redirect("/auth/invalid_account");
-        }
+  async post(req, res, next) {
+    try {
+      const id = req.body.id;
+      delete req.body.id;
+      const resp = await Firestore.update(this.table, id, req.body);
+      if (resp._writeTime) {
+        res.redirect(`https://chat.whatsapp.com/${process.env.IDGRUPO}`);
+      } else {
+        throw new Error("Error de Base de Datos");
       }
-    )(req, res, next);
+    } catch (error) {
+      res.redirect(`/auth/valid_account?msg=${error.msg}`);
+    }
+    next();
   }
 }
-
 module.exports = new Register();
