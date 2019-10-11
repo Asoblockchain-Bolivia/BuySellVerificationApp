@@ -16,6 +16,8 @@ passport.use(
       callbackURL: callback_url
     },
     async function(accessToken, refreshToken, profile, done) {
+      console.log("HUASCAR: ", profile);
+
       try {
         const datos = await getPosts(
           process.env.DAYS_ANTIQUITY,
